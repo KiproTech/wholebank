@@ -1051,6 +1051,7 @@ body {
   .intro-tips { grid-template-columns: 1fr; }
   .plans-grid { grid-template-columns: 1fr 1fr; }
   .navbar { padding: 14px 20px; }
+<<<<<<< HEAD
 }
 
 /* ---- CONTACT DETAILS ON AUTH BRAND ---- */
@@ -1315,4 +1316,6 @@ body {
   .nav-contact { display: none; }
   .contact-bar { padding: 24px 20px; }
   .contact-bar-items { grid-template-columns: 1fr 1fr; }
+=======
+>>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
 }
