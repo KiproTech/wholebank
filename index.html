@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>World Bank Youth Empowerment Funds</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ========== LOGIN PAGE ========== -->
+<div id="page-login" class="page active">
+  <div class="auth-split">
+    <div class="auth-brand">
+      <div class="logo-wrap">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="32" fill="#C8A951"/>
+          <path d="M16 44 L32 14 L48 44" stroke="#1a3a2a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M22 34 L42 34" stroke="#1a3a2a" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="32" cy="14" r="4" fill="#1a3a2a"/>
+          <path d="M26 48 Q32 44 38 48" stroke="#1a3a2a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <div>
+          <div class="brand-name">WBYEF</div>
+          <div class="brand-sub">World Bank Youth Empowerment Funds</div>
+        </div>
+      </div>
+      <div class="brand-tagline">"Empowering Youth.<br/>Building Tomorrow."</div>
+      <div class="brand-stats">
+        <div class="stat"><span>2025</span><small>Founded</small></div>
+        <div class="stat"><span>35-</span><small>Age Limit</small></div>
+        <div class="stat"><span>UN+WB</span><small>Partners</small></div>
+      </div>
+    </div>
+    <div class="auth-form-side">
+      <div class="auth-card">
+        <h2>Welcome Back</h2>
+        <p class="auth-desc">Sign in to your WBYEF account</p>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="login-email" placeholder="you@example.com"/>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="••••••••"/>
+        </div>
+        <div id="login-error" class="error-msg"></div>
+        <button class="btn-primary" onclick="handleLogin()">Sign In</button>
+        <div class="auth-switch">Don't have an account? <a href="#" onclick="showPage('page-register')">Register here</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== REGISTER PAGE ========== -->
+<div id="page-register" class="page">
+  <div class="auth-split">
+    <div class="auth-brand">
+      <div class="logo-wrap">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="32" fill="#C8A951"/>
+          <path d="M16 44 L32 14 L48 44" stroke="#1a3a2a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M22 34 L42 34" stroke="#1a3a2a" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="32" cy="14" r="4" fill="#1a3a2a"/>
+          <path d="M26 48 Q32 44 38 48" stroke="#1a3a2a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <div>
+          <div class="brand-name">WBYEF</div>
+          <div class="brand-sub">World Bank Youth Empowerment Funds</div>
+        </div>
+      </div>
+      <div class="brand-tagline">"Your Future Starts<br/>Here."</div>
+      <div class="brand-stats">
+        <div class="stat"><span>2025</span><small>Founded</small></div>
+        <div class="stat"><span>35-</span><small>Age Limit</small></div>
+        <div class="stat"><span>UN+WB</span><small>Partners</small></div>
+      </div>
+    </div>
+    <div class="auth-form-side">
+      <div class="auth-card">
+        <h2>Create Account</h2>
+        <p class="auth-desc">Join thousands of empowered youth today</p>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="reg-name" placeholder="John Doe"/>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="reg-email" placeholder="you@example.com"/>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="reg-password" placeholder="Min. 6 characters"/>
+        </div>
+        <div id="register-error" class="error-msg"></div>
+        <button class="btn-primary" onclick="handleRegister()">Create Account</button>
+        <div class="auth-switch">Already have an account? <a href="#" onclick="showPage('page-login')">Sign in</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== DASHBOARD PAGE ========== -->
+<div id="page-dashboard" class="page">
+  <nav class="navbar">
+    <div class="logo-wrap small">
+      <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="32" fill="#C8A951"/>
+        <path d="M16 44 L32 14 L48 44" stroke="#1a3a2a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M22 34 L42 34" stroke="#1a3a2a" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="32" cy="14" r="4" fill="#1a3a2a"/>
+      </svg>
+      <span class="brand-name small">WBYEF</span>
+    </div>
+    <button class="btn-logout" onclick="handleLogout()">Logout</button>
+  </nav>
+
+  <!-- Ticker -->
+  <div class="ticker-wrap">
+    <div class="ticker-label">🟢 LIVE</div>
+    <div class="ticker-track">
+      <div class="ticker-content" id="ticker-content"></div>
+    </div>
+  </div>
+
+  <div class="dashboard-hero">
+    <div class="dashboard-welcome">
+      <div class="welcome-badge">🌍 Official Program 2025</div>
+      <h1>Welcome, <span id="user-first-name">Friend</span>! 👋</h1>
+      <p class="welcome-subtitle">You've taken the first step toward transforming your future. The World Bank Youth Empowerment Funds is here to support your journey.</p>
+    </div>
+
+    <div class="about-section">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>About WBYEF</h2>
+          <p>The <strong>World Bank Youth Empowerment Funds (WBYEF)</strong> is a prestigious global initiative founded in 2025 through a landmark joint partnership between the <strong>World Bank</strong> and the <strong>United Nations</strong>. Our mandate is clear: to financially empower young people under the age of 35 by funding and supporting their entrepreneurial, agricultural, and development projects.</p>
+          <p>We believe that youth are the engine of tomorrow's economy. Through our program, we provide direct financial grants to young innovators, farmers, technologists, and entrepreneurs — helping them turn bold ideas into real, impactful ventures that uplift communities and nations.</p>
+
+          <div class="fund-categories">
+            <div class="fund-cat">🌾<span>Agriculture & Farming</span></div>
+            <div class="fund-cat">💻<span>Technology & Innovation</span></div>
+            <div class="fund-cat">🏗️<span>Community Development</span></div>
+            <div class="fund-cat">📈<span>Business & Entrepreneurship</span></div>
+            <div class="fund-cat">🎓<span>Education & Skills</span></div>
+            <div class="fund-cat">🌱<span>Environmental Projects</span></div>
+          </div>
+        </div>
+        <div class="about-side">
+          <div class="partner-card">
+            <div class="partner-logo">🏦</div>
+            <div><strong>World Bank</strong><br/><small>Global Financial Partner</small></div>
+          </div>
+          <div class="partner-card">
+            <div class="partner-logo">🌐</div>
+            <div><strong>United Nations</strong><br/><small>Global Policy Partner</small></div>
+          </div>
+          <div class="impact-box">
+            <h3>Our Impact</h3>
+            <div class="impact-stat"><span>50,000+</span><small>Youth Funded Globally</small></div>
+            <div class="impact-stat"><span>KSH 55,000</span><small>Max Grant Available</small></div>
+            <div class="impact-stat"><span>120+</span><small>Countries Covered</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <p>Ready to apply for your grant? Click below to begin your application.</p>
+      <button class="btn-primary large" onclick="showPage('page-intro')">🚀 Get Started</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== INTRO PAGE ========== -->
+<div id="page-intro" class="page">
+  <div class="page-container">
+    <div class="intro-card">
+      <div class="intro-icon">📋</div>
+      <h2>Before We Continue</h2>
+      <p>We're excited to have you here! Before we proceed with your application, we will need to ask you a few important questions regarding <strong>yourself</strong> and <strong>your project</strong>.</p>
+      <p>This information will help us evaluate your eligibility for the WBYEF grant and ensure that funds reach the right candidates.</p>
+      <div class="intro-tips">
+        <div class="tip">✅ Answer all questions honestly and accurately</div>
+        <div class="tip">📱 Keep your ID and project details nearby</div>
+        <div class="tip">⏱️ The process takes about 5–10 minutes</div>
+        <div class="tip">🔒 Your information is safe and confidential</div>
+      </div>
+      <button class="btn-primary large" onclick="startQuestions()">Continue to Application →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== QUESTIONS PAGES ========== -->
+<div id="page-questions" class="page">
+  <div class="page-container">
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+    <div class="step-label" id="step-label">Step 1 of 6</div>
+    <div class="question-card" id="question-card">
+      <!-- Dynamically rendered -->
+    </div>
+  </div>
+</div>
+
+<!-- ========== REVIEW PAGE ========== -->
+<div id="page-review" class="page">
+  <div class="page-container">
+    <div class="review-card">
+      <h2>📄 Review Your Application</h2>
+      <p>Please review all your details carefully before submitting. You can edit any section by clicking the <strong>Edit</strong> button.</p>
+      <div id="review-content"></div>
+      <div class="review-actions">
+        <button class="btn-primary large" onclick="submitApplication()">✅ Submit Application</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== VERIFICATION PAGE ========== -->
+<div id="page-verify" class="page">
+  <div class="page-container center">
+    <div class="verify-card">
+      <div class="verify-spinner"></div>
+      <h2>Verifying Your Details</h2>
+      <p>Please wait while our system processes and verifies your application. This will take approximately <strong>5 minutes</strong>.</p>
+      <div class="countdown-wrap">
+        <div class="countdown-circle">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#e8e0cc" stroke-width="6"/>
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#C8A951" stroke-width="6" stroke-dasharray="283" stroke-dashoffset="0" id="countdown-ring" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+          </svg>
+          <div class="countdown-text" id="countdown-text">5:00</div>
+        </div>
+      </div>
+      <p class="verify-note">Do not close or refresh this page.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FUNDING PLAN PAGE ========== -->
+<div id="page-plans" class="page">
+  <div class="page-container">
+    <div class="plans-card">
+      <div class="congrats-badge">🎉 Congratulations!</div>
+      <h2>Your Application Has Been Verified!</h2>
+      <p>You are now eligible to receive funding from the World Bank Youth Empowerment Funds. Please select the funding plan that best suits your needs. A small processing fee is required to activate and unlock your grant.</p>
+
+      <div class="plans-grid" id="plans-grid">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <p class="plans-note">💡 <em>This is a limited-time promotion available to all registered youth under our empowerment program. Select your preferred plan and proceed.</em></p>
+      <button class="btn-primary large" id="proceed-payment-btn" onclick="proceedToPayment()" disabled>Proceed to Payment →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAYMENT PAGE ========== -->
+<div id="page-payment" class="page">
+  <div class="page-container">
+    <div class="payment-card">
+      <h2>💳 Payment Instructions</h2>
+      <div class="payment-summary" id="payment-summary"></div>
+      <div class="payment-notice">
+        <div class="notice-icon">🏛️</div>
+        <div>
+          <strong>Government Payment Portal</strong>
+          <p>Payment details will be provided shortly. All processing fees are remitted directly to the Government's official account. You will receive payment instructions via your registered email once confirmed.</p>
+          <p><em>Payment method coming soon — please check your email: <strong id="user-email-display"></strong></em></p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Payment Reference Number (if already paid)</label>
+        <input type="text" id="payment-ref" placeholder="e.g. TXN123456789"/>
+      </div>
+      <div class="form-group">
+        <label>Upload Payment Screenshot (optional)</label>
+        <input type="file" id="payment-screenshot" accept="image/*"/>
+      </div>
+      <div id="payment-error" class="error-msg"></div>
+      <button class="btn-primary large" onclick="submitPayment()">Submit Payment Proof →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== WAITING APPROVAL PAGE ========== -->
+<div id="page-waiting" class="page">
+  <div class="page-container center">
+    <div class="waiting-card">
+      <div class="waiting-icon">⏳</div>
+      <h2>Payment Submitted!</h2>
+      <p>Thank you! Your payment proof has been received. Our admin team is currently reviewing your submission.</p>
+      <div class="status-badge pending">🔄 Status: Pending Approval</div>
+      <p class="waiting-note">You will be notified once your payment has been approved. Please check back regularly or wait on this page.</p>
+      <div class="waiting-spinner"></div>
+      <button class="btn-secondary" onclick="checkApprovalStatus()">🔄 Check Status</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== APPROVED PAGE ========== -->
+<div id="page-approved" class="page">
+  <div class="page-container">
+    <div class="approved-card">
+      <div class="approved-icon">✅</div>
+      <h2>Payment Confirmed!</h2>
+      <p>🎉 Congratulations! Your payment has been received and verified successfully by the WBYEF team. To complete the process and receive your grant funds, please provide your account details below.</p>
+      <div class="form-group">
+        <label>Full Name (Account Holder)</label>
+        <input type="text" id="acc-name" placeholder="As it appears on your account"/>
+      </div>
+      <div class="form-group">
+        <label>M-Pesa Number / Bank Account Number</label>
+        <input type="text" id="acc-number" placeholder="e.g. 0712345678 or 1234567890"/>
+      </div>
+      <div class="form-group">
+        <label>Bank Name (if bank transfer)</label>
+        <input type="text" id="acc-bank" placeholder="e.g. Equity Bank, KCB, M-Pesa (leave blank if M-Pesa)"/>
+      </div>
+      <div id="account-error" class="error-msg"></div>
+      <button class="btn-primary large" onclick="submitAccountDetails()">Submit Account Details ✅</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FINAL SUCCESS PAGE ========== -->
+<div id="page-success" class="page">
+  <div class="page-container center">
+    <div class="success-card">
+      <div class="success-icon">🏆</div>
+      <h2>Application Complete!</h2>
+      <p>Your account details have been received. The WBYEF team will process your grant disbursement within <strong>24–48 hours</strong>.</p>
+      <p>Thank you for being part of the <strong>World Bank Youth Empowerment Funds</strong> program. Together, we are building a better tomorrow!</p>
+      <div class="success-ref">Reference: <strong id="success-ref-id"></strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== ADMIN DASHBOARD ========== -->
+<div id="page-admin" class="page">
+  <nav class="navbar admin-nav">
+    <div class="logo-wrap small">
+      <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="32" fill="#C8A951"/>
+        <path d="M16 44 L32 14 L48 44" stroke="#1a3a2a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M22 34 L42 34" stroke="#1a3a2a" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="32" cy="14" r="4" fill="#1a3a2a"/>
+      </svg>
+      <span class="brand-name small">WBYEF Admin</span>
+    </div>
+    <button class="btn-logout" onclick="handleLogout()">Logout</button>
+  </nav>
+  <div class="admin-container">
+    <h2>Admin Dashboard</h2>
+    <div class="admin-stats" id="admin-stats"></div>
+    <h3>Payment Submissions</h3>
+    <div class="admin-filters">
+      <button class="filter-btn active" onclick="filterSubmissions('all', this)">All</button>
+      <button class="filter-btn" onclick="filterSubmissions('pending', this)">Pending</button>
+      <button class="filter-btn" onclick="filterSubmissions('approved', this)">Approved</button>
+      <button class="filter-btn" onclick="filterSubmissions('rejected', this)">Rejected</button>
+    </div>
+    <div id="admin-submissions"></div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
