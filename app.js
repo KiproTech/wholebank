@@ -3,22 +3,11 @@
 // Main Application JS - Supabase Backend
 // ============================================
 
-<<<<<<< HEAD
-=======
-// supabase.auth.onAuthStateChange((event, session) => {
-//   console.log("Auth event:", event, session);
-// });
-
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
 const SUPABASE_URL = 'https://cjkyflsgdiqoyfiaveba.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_KB7yAs2hbZsYyYzHVz42lQ_e6oVvlC9';
-<<<<<<< HEAD
 const ADMIN_EMAIL  = 'worldbankfund@gmail.com';
-=======
-const ADMIN_EMAIL  = 'Worldbankfund@gmail.com';
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -81,11 +70,7 @@ const STEPS = [
     desc: 'Help us understand how you plan to use the grant.',
     fields: [
       { id: 'fundAmount',  label: 'How much funding are you requesting? (KSH)',           type: 'text',     placeholder: 'e.g. 30,000' },
-<<<<<<< HEAD
       { id: 'fundUsage',   label: 'How do you plan to use the funds? (Be specific)',      type: 'textarea', placeholder: 'e.g. Purchase farming equipment, pay for seeds...' },
-=======
-      { id: 'fundUsage',   label: 'How do you plan to use the funds? (Be specific)',      type: 'textarea', placeholder: 'e.g. Purchase farming equipment, pay for seeds, and market produce...' },
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
       { id: 'fundOutcome', label: 'What is your expected outcome within the next 6 months?', type: 'textarea', placeholder: 'e.g. Increase production by 50% and hire 2 employees...' },
       { id: 'prevFunding', label: 'Have you received any funding or grant before?',       type: 'select',   options: ['No, this is my first time','Yes, I have received funding before'] },
     ],
@@ -119,7 +104,6 @@ const STEPS = [
 ];
 
 // ============================================
-<<<<<<< HEAD
 // HELPERS — Button Loading State
 // ============================================
 function setLoading(btnId, textId, spinnerId, loading, label = '') {
@@ -133,8 +117,6 @@ function setLoading(btnId, textId, spinnerId, loading, label = '') {
 }
 
 // ============================================
-=======
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
 // PAGE NAVIGATION
 // ============================================
 function showPage(pageId) {
@@ -145,11 +127,7 @@ function showPage(pageId) {
 window.showPage = showPage;
 
 // ============================================
-<<<<<<< HEAD
 // AUTH — LOGIN
-=======
-// AUTH
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
 // ============================================
 window.handleLogin = async function () {
   const email    = document.getElementById('login-email').value.trim();
@@ -159,28 +137,21 @@ window.handleLogin = async function () {
 
   if (!email || !password) { errEl.textContent = 'Please fill in all fields.'; return; }
 
-<<<<<<< HEAD
   setLoading('login-btn', 'login-btn-text', 'login-spinner', true, 'Signing in...');
 
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
   setLoading('login-btn', 'login-btn-text', 'login-spinner', false, 'Sign In');
 
-=======
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   if (error) { errEl.textContent = error.message; return; }
 
   currentUser = data.user;
   await afterLogin();
 };
 
-<<<<<<< HEAD
 // ============================================
 // AUTH — REGISTER
 // ============================================
-=======
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
 window.handleRegister = async function () {
   const name     = document.getElementById('reg-name').value.trim();
   const email    = document.getElementById('reg-email').value.trim();
@@ -191,7 +162,6 @@ window.handleRegister = async function () {
   if (!name || !email || !password) { errEl.textContent = 'Please fill in all fields.'; return; }
   if (password.length < 6)          { errEl.textContent = 'Password must be at least 6 characters.'; return; }
 
-<<<<<<< HEAD
   setLoading('register-btn', 'register-btn-text', 'register-spinner', true, 'Creating account...');
 
   const { data, error } = await supabase.auth.signUp({
@@ -204,18 +174,10 @@ window.handleRegister = async function () {
   if (error) { errEl.textContent = error.message; return; }
 
   currentUser = data.user;
-=======
-  const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { full_name: name } } });
-  if (error) { errEl.textContent = error.message; return; }
-
-  currentUser = data.user;
-  // Save profile
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   await supabase.from('profiles').upsert({ id: currentUser.id, full_name: name, email, role: 'user' });
   await afterLogin();
 };
 
-<<<<<<< HEAD
 // ============================================
 // AUTH — FORGOT PASSWORD
 // ============================================
@@ -245,15 +207,12 @@ window.handleForgotPassword = async function () {
 // ============================================
 // AUTH — LOGOUT
 // ============================================
-=======
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
 window.handleLogout = async function () {
   await supabase.auth.signOut();
   currentUser = null; userProfile = null; answers = {}; selectedPlan = null;
   showPage('page-login');
 };
 
-<<<<<<< HEAD
 // ============================================
 // AFTER LOGIN ROUTING
 // ============================================
@@ -276,26 +235,6 @@ async function afterLogin() {
     if (sub) {
       if (sub.status === 'approved') showPage('page-approved');
       else showPage('page-waiting');
-=======
-async function afterLogin() {
-  // Fetch profile
-  const { data: profile } = await supabase.from('profiles').select('*').eq('id', currentUser.id).single();
-  userProfile = profile;
-
-  if (currentUser.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
-    loadAdminDashboard();
-    showPage('page-admin');
-  } else {
-    loadDashboard();
-    // Check if user has an existing submission
-    const { data: sub } = await supabase.from('submissions').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false }).limit(1).single();
-    if (sub) {
-      if (sub.status === 'approved') {
-        showPage('page-approved');
-      } else {
-        showPage('page-waiting');
-      }
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
     } else {
       showPage('page-dashboard');
     }
@@ -306,7 +245,6 @@ async function afterLogin() {
 // TICKER
 // ============================================
 const FAKE_USERS = [
-<<<<<<< HEAD
   { name: 'Amina Wanjiku',     phone: '0712 *** 321' },
   { name: 'Brian Otieno',      phone: '0723 *** 456' },
   { name: 'Cynthia Achieng',   phone: '0734 *** 789' },
@@ -322,23 +260,6 @@ const FAKE_USERS = [
   { name: 'Moses Kiprotich',   phone: '0744 *** 789' },
   { name: 'Nancy Adhiambo',    phone: '0755 *** 012' },
   { name: 'Oliver Omondi',     phone: '0766 *** 345' },
-=======
-  { name: 'Amina Wanjiku', phone: '0712 ***  321' },
-  { name: 'Brian Otieno',  phone: '0723 *** 456' },
-  { name: 'Cynthia Achieng', phone: '0734 *** 789' },
-  { name: 'David Kipchoge', phone: '0745 *** 012' },
-  { name: 'Esther Muthoni', phone: '0756 *** 345' },
-  { name: 'Felix Kamau',   phone: '0767 *** 678' },
-  { name: 'Grace Nyambura', phone: '0778 *** 901' },
-  { name: 'Hassan Abdi',   phone: '0789 *** 234' },
-  { name: 'Irene Chebet',  phone: '0700 *** 567' },
-  { name: 'James Mutua',   phone: '0711 *** 890' },
-  { name: 'Karen Auma',    phone: '0722 *** 123' },
-  { name: 'Lilian Njeri',  phone: '0733 *** 456' },
-  { name: 'Moses Kiprotich', phone: '0744 *** 789' },
-  { name: 'Nancy Adhiambo', phone: '0755 *** 012' },
-  { name: 'Oliver Omondi', phone: '0766 *** 345' },
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
 ];
 
 function loadTicker() {
@@ -368,15 +289,9 @@ window.startQuestions = function () {
 };
 
 function renderStep() {
-<<<<<<< HEAD
   const step  = STEPS[currentStep];
   const total = STEPS.length;
   const pct   = Math.round(((currentStep + 1) / total) * 100);
-=======
-  const step    = STEPS[currentStep];
-  const total   = STEPS.length;
-  const pct     = Math.round(((currentStep + 1) / total) * 100);
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   document.getElementById('progress-bar').style.width = pct + '%';
   document.getElementById('step-label').textContent   = `Step ${currentStep + 1} of ${total}`;
 
@@ -386,7 +301,6 @@ function renderStep() {
     card.innerHTML = `
       <h3>${step.title}</h3>
       <p class="section-desc">${step.question}</p>
-<<<<<<< HEAD
       <div class="options-list">
         ${step.options.map(opt => `
           <label class="option-item ${answers[step.id] === opt.value ? 'selected' : ''}"
@@ -394,15 +308,6 @@ function renderStep() {
             <input type="radio" name="${step.id}" value="${opt.value}" ${answers[step.id] === opt.value ? 'checked' : ''}/>
             ${opt.label}
           </label>`).join('')}
-=======
-      <div class="options-list" id="radio-options">
-        ${step.options.map(opt => `
-          <label class="option-item ${answers[step.id] === opt.value ? 'selected' : ''}" onclick="selectOption('${step.id}', '${opt.value}', this)">
-            <input type="radio" name="${step.id}" value="${opt.value}" ${answers[step.id] === opt.value ? 'checked' : ''}/>
-            ${opt.label}
-          </label>
-        `).join('')}
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
       </div>
       <div class="q-nav">
         ${currentStep > 0 ? `<button class="btn-back" onclick="prevStep()">← Back</button>` : ''}
@@ -437,10 +342,6 @@ window.selectOption = function (fieldId, value, el) {
 
 window.nextStep = function () {
   const step = STEPS[currentStep];
-<<<<<<< HEAD
-=======
-
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   if (step.type === 'radio') {
     if (!answers[step.id]) { alert('Please select an option to continue.'); return; }
   } else {
@@ -452,10 +353,6 @@ window.nextStep = function () {
       answers[f.id] = val;
     }
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   if (currentStep < STEPS.length - 1) {
     currentStep++;
     renderStep();
@@ -475,31 +372,18 @@ window.prevStep = function () {
 // ============================================
 function renderReview() {
   const sections = [
-<<<<<<< HEAD
     { title: '👤 Personal Information',   step: 0, fields: ['fullName','dob','gender','nationality','idNumber','phone','email2','address'] },
     { title: '🎓 Educational Background', step: 1, fields: ['eduLevel','school','course','gradYear'] },
     { title: '🚀 Project & Business',     step: 2, fields: ['projectName','projectDesc','projectCat','projectLoc','projectAge'] },
     { title: '💰 Funding Details',        step: 3, fields: ['fundAmount','fundUsage','fundOutcome','prevFunding'] },
     { title: '✅ First Time Applying',    step: 4, fields: ['firstTime'] },
     { title: '🎁 Fund Preference',        step: 5, fields: ['fundPreference'] },
-=======
-    { title: '👤 Personal Information', step: 0, fields: ['fullName','dob','gender','nationality','idNumber','phone','email2','address'] },
-    { title: '🎓 Educational Background', step: 1, fields: ['eduLevel','school','course','gradYear'] },
-    { title: '🚀 Project & Business', step: 2, fields: ['projectName','projectDesc','projectCat','projectLoc','projectAge'] },
-    { title: '💰 Funding Details', step: 3, fields: ['fundAmount','fundUsage','fundOutcome','prevFunding'] },
-    { title: '✅ First Time Applying', step: 4, fields: ['firstTime'] },
-    { title: '🎁 Fund Usage Preference', step: 5, fields: ['fundPreference'] },
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   ];
 
   const labelMap = {};
   STEPS.forEach(s => {
     if (s.fields) s.fields.forEach(f => { labelMap[f.id] = f.label; });
-<<<<<<< HEAD
     if (s.id)     labelMap[s.id] = s.title;
-=======
-    if (s.id)     labelMap[s.id] = s.question || s.title;
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   });
 
   document.getElementById('review-content').innerHTML = sections.map(sec => `
@@ -525,20 +409,12 @@ window.editStep = function (step) {
 };
 
 // ============================================
-<<<<<<< HEAD
 // SUBMIT → VERIFICATION (1 MINUTE)
 // ============================================
 window.submitApplication = function () {
   showPage('page-verify');
   // ⏱️ 1 minute = 60 seconds
   startCountdown(60, () => {
-=======
-// SUBMIT APPLICATION → VERIFICATION
-// ============================================
-window.submitApplication = async function () {
-  showPage('page-verify');
-  startCountdown(5 * 60, () => {
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
     renderPlans();
     showPage('page-plans');
   });
@@ -548,32 +424,17 @@ window.submitApplication = async function () {
 // COUNTDOWN TIMER
 // ============================================
 function startCountdown(seconds, onComplete) {
-<<<<<<< HEAD
   const ring    = document.getElementById('countdown-ring');
   const textEl  = document.getElementById('countdown-text');
   const circum  = 2 * Math.PI * 45;
   let remaining = seconds;
-=======
-  const ring     = document.getElementById('countdown-ring');
-  const textEl   = document.getElementById('countdown-text');
-  const total    = seconds;
-  const circum   = 2 * Math.PI * 45; // r=45
-
-  let remaining  = seconds;
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
 
   const interval = setInterval(() => {
     remaining--;
     const mins = Math.floor(remaining / 60);
     const secs = remaining % 60;
     textEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
-<<<<<<< HEAD
     ring.style.strokeDashoffset = circum * (1 - remaining / seconds);
-=======
-
-    const offset = circum * (1 - remaining / total);
-    ring.style.strokeDashoffset = offset;
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
 
     if (remaining <= 0) {
       clearInterval(interval);
@@ -586,12 +447,7 @@ function startCountdown(seconds, onComplete) {
 // FUNDING PLANS
 // ============================================
 function renderPlans() {
-<<<<<<< HEAD
   document.getElementById('plans-grid').innerHTML = PLANS.map(p => `
-=======
-  const grid = document.getElementById('plans-grid');
-  grid.innerHTML = PLANS.map(p => `
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
     <div class="plan-item" id="plan-${p.id}" onclick="selectPlan(${p.id})">
       <div class="plan-amount">${p.amount}</div>
       <div class="plan-label">Grant Amount</div>
@@ -609,20 +465,12 @@ window.selectPlan = function (id) {
 
 window.proceedToPayment = function () {
   if (!selectedPlan) return;
-<<<<<<< HEAD
   document.getElementById('payment-summary').innerHTML =
     `You selected: <strong>${selectedPlan.amount}</strong> grant &nbsp;|&nbsp; Processing Fee: <strong>${selectedPlan.fee}</strong>`;
-=======
-  document.getElementById('payment-summary').innerHTML = `
-    You selected: <strong>${selectedPlan.amount}</strong> grant &nbsp;|&nbsp;
-    Processing Fee: <strong>${selectedPlan.fee}</strong>`;
-  document.getElementById('user-email-display').textContent = currentUser.email;
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   showPage('page-payment');
 };
 
 // ============================================
-<<<<<<< HEAD
 // PAYMENT METHOD TOGGLE
 // ============================================
 window.showPaymentMethod = function () {
@@ -675,24 +523,6 @@ window.submitPayment = async function () {
     plan_fee:    selectedPlan?.fee || '',
     payment_ref: ref || 'Pending',
     status:      'pending',
-=======
-// PAYMENT SUBMISSION
-// ============================================
-window.submitPayment = async function () {
-  const ref    = document.getElementById('payment-ref').value.trim();
-  const errEl  = document.getElementById('payment-error');
-  errEl.textContent = '';
-
-  const { error } = await supabase.from('submissions').insert({
-    user_id:    currentUser.id,
-    user_name:  answers.fullName || userProfile?.full_name || '',
-    user_email: currentUser.email,
-    answers:    answers,
-    plan_amount: selectedPlan?.amount || '',
-    plan_fee:    selectedPlan?.fee || '',
-    payment_ref: ref || 'Pending',
-    status:     'pending',
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   });
 
   if (error) { errEl.textContent = 'Submission failed: ' + error.message; return; }
@@ -703,16 +533,12 @@ window.submitPayment = async function () {
 // CHECK APPROVAL STATUS
 // ============================================
 window.checkApprovalStatus = async function () {
-<<<<<<< HEAD
   const { data } = await supabase
     .from('submissions').select('status')
     .eq('user_id', currentUser.id)
     .order('created_at', { ascending: false })
     .limit(1).single();
 
-=======
-  const { data } = await supabase.from('submissions').select('status').eq('user_id', currentUser.id).order('created_at', { ascending: false }).limit(1).single();
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   if (data?.status === 'approved') showPage('page-approved');
   else alert('Your application is still under review. Please check back soon.');
 };
@@ -721,17 +547,10 @@ window.checkApprovalStatus = async function () {
 // ACCOUNT DETAILS (POST APPROVAL)
 // ============================================
 window.submitAccountDetails = async function () {
-<<<<<<< HEAD
   const name   = document.getElementById('acc-name').value.trim();
   const number = document.getElementById('acc-number').value.trim();
   const bank   = document.getElementById('acc-bank').value.trim();
   const errEl  = document.getElementById('account-error');
-=======
-  const name    = document.getElementById('acc-name').value.trim();
-  const number  = document.getElementById('acc-number').value.trim();
-  const bank    = document.getElementById('acc-bank').value.trim();
-  const errEl   = document.getElementById('account-error');
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   errEl.textContent = '';
 
   if (!name || !number) { errEl.textContent = 'Please fill in your name and account number.'; return; }
@@ -745,12 +564,7 @@ window.submitAccountDetails = async function () {
 
   if (error) { errEl.textContent = 'Failed to save: ' + error.message; return; }
 
-<<<<<<< HEAD
   document.getElementById('success-ref-id').textContent = 'WBYEF-' + Date.now();
-=======
-  const refId = 'WBYEF-' + Date.now();
-  document.getElementById('success-ref-id').textContent = refId;
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   showPage('page-success');
 };
 
@@ -758,12 +572,8 @@ window.submitAccountDetails = async function () {
 // ADMIN DASHBOARD
 // ============================================
 async function loadAdminDashboard() {
-<<<<<<< HEAD
   const { data } = await supabase
     .from('submissions').select('*').order('created_at', { ascending: false });
-=======
-  const { data } = await supabase.from('submissions').select('*').order('created_at', { ascending: false });
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   allSubmissions = data || [];
   renderAdminStats();
   renderSubmissions(allSubmissions);
@@ -784,15 +594,10 @@ function renderAdminStats() {
 
 function renderSubmissions(list) {
   const container = document.getElementById('admin-submissions');
-<<<<<<< HEAD
   if (!list.length) {
     container.innerHTML = '<p style="color:var(--text-light);text-align:center;padding:40px">No submissions found.</p>';
     return;
   }
-=======
-  if (!list.length) { container.innerHTML = '<p style="color:var(--text-light);text-align:center;padding:40px">No submissions found.</p>'; return; }
-
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
   container.innerHTML = list.map(s => `
     <div class="submission-card">
       <div>
@@ -801,13 +606,9 @@ function renderSubmissions(list) {
         <div class="submission-plan">Grant: <strong>${s.plan_amount}</strong> &nbsp;|&nbsp; Fee: <strong>${s.plan_fee}</strong></div>
         <div class="submission-ref">Ref: ${s.payment_ref || '—'}</div>
         <div class="submission-date">${new Date(s.created_at).toLocaleString()}</div>
-<<<<<<< HEAD
         <span class="status-badge ${s.status}">
           ${s.status === 'pending' ? '🔄 Pending' : s.status === 'approved' ? '✅ Approved' : '❌ Rejected'}
         </span>
-=======
-        <span class="status-badge ${s.status}">${s.status === 'pending' ? '🔄 Pending' : s.status === 'approved' ? '✅ Approved' : '❌ Rejected'}</span>
->>>>>>> 64a5b7d294fc2bb7b9d7566473eaef6e983b98e8
       </div>
       <div class="submission-actions">
         ${s.status === 'pending' ? `
