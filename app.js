@@ -641,6 +641,23 @@ window.filterSubmissions = function (filter, btn) {
     currentUser = session.user;
     await afterLogin();
   } else {
-    showPage('page-login');
+    showPage('page-landing');
   }
+})();
+
+// ============================================
+// LANDING PAGE TICKER
+// ============================================
+(function loadLandingTicker() {
+  const el = document.getElementById('land-ticker');
+  if (!el) return;
+  const users = [
+    'Amina W. — 0712***321','Brian O. — 0723***456','Cynthia A. — 0734***789',
+    'David K. — 0745***012','Esther M. — 0756***345','Felix K. — 0767***678',
+    'Grace N. — 0778***901','Hassan A. — 0789***234','Irene C. — 0700***567',
+    'James M. — 0711***890','Karen A. — 0722***123','Lilian N. — 0733***456',
+    'Moses K. — 0744***789','Nancy A. — 0755***012','Oliver O. — 0766***345',
+  ];
+  const doubled = [...users, ...users];
+  el.innerHTML = doubled.map(u => `<span class="ticker-item">✅ ${u} just received funding</span>`).join('');
 })();

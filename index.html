@@ -9,8 +9,234 @@
 </head>
 <body>
 
+<!-- ========== LANDING PAGE ========== -->
+<div id="page-landing" class="page active">
+
+  <!-- NAV -->
+  <nav class="land-nav">
+    <div class="land-logo">
+      <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="32" fill="#C8A951"/>
+        <path d="M16 44 L32 14 L48 44" stroke="#1a3a2a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M22 34 L42 34" stroke="#1a3a2a" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="32" cy="14" r="4" fill="#1a3a2a"/>
+        <path d="M26 48 Q32 44 38 48" stroke="#1a3a2a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      </svg>
+      <div>
+        <div class="land-logo-name">WBYEF</div>
+        <div class="land-logo-sub">World Bank Youth Empowerment Funds</div>
+      </div>
+    </div>
+    <div class="land-nav-links">
+      <a href="tel:+18032104704" class="land-nav-contact">&#128222; +1 (803) 210-4704</a>
+      <button class="land-btn-outline" onclick="showPage('page-login')">Sign In</button>
+      <button class="land-btn-gold" onclick="showPage('page-register')">Apply Now &rarr;</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="land-hero">
+    <div class="land-hero-bg">
+      <div class="hero-orb orb1"></div>
+      <div class="hero-orb orb2"></div>
+      <div class="hero-orb orb3"></div>
+    </div>
+    <div class="land-hero-content">
+      <div class="land-hero-badge">
+        <span class="badge-dot"></span>
+        &#127757; Official UN &amp; World Bank Initiative &mdash; Est. 2025
+      </div>
+      <h1 class="land-hero-title">
+        Your <em>Future</em> Is<br/>Worth Funding.
+      </h1>
+      <p class="land-hero-desc">
+        The World Bank Youth Empowerment Funds provides direct financial grants to young people under 35 &mdash; turning bold ideas into real, thriving ventures. Agriculture, technology, business &mdash; <strong>we fund your dream.</strong>
+      </p>
+      <div class="land-hero-cta">
+        <button class="land-btn-hero" onclick="showPage('page-register')">&#128640; Start My Application</button>
+        <button class="land-btn-ghost" onclick="document.getElementById('land-about').scrollIntoView({behavior:'smooth'})">Learn More &darr;</button>
+      </div>
+      <div class="land-hero-stats">
+        <div class="h-stat"><span>50,000+</span><small>Youth Funded</small></div>
+        <div class="h-stat-div"></div>
+        <div class="h-stat"><span>KSH 55,000</span><small>Max Grant</small></div>
+        <div class="h-stat-div"></div>
+        <div class="h-stat"><span>120+</span><small>Countries</small></div>
+        <div class="h-stat-div"></div>
+        <div class="h-stat"><span>100%</span><small>Free to Apply</small></div>
+      </div>
+    </div>
+    <div class="land-hero-visual">
+      <div class="hero-card-stack">
+        <div class="hcard hcard-back"></div>
+        <div class="hcard hcard-mid">
+          <div class="hcard-label">Grant Approved &#10003;</div>
+          <div class="hcard-amount">KSH 45,000</div>
+          <div class="hcard-name">Brian Otieno</div>
+          <div class="hcard-tag">Technology Project</div>
+        </div>
+        <div class="hcard hcard-front">
+          <div class="hcard-icon">&#127806;</div>
+          <div class="hcard-title">GreenHarvest Farms</div>
+          <div class="hcard-status"><span class="pulse-dot"></span> Funded &amp; Active</div>
+          <div class="hcard-progress-wrap"><div class="hcard-progress-bar"></div></div>
+          <div class="hcard-meta">KSH 30,000 disbursed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="land-ticker">
+    <div class="land-ticker-label">&#128994; LIVE FUNDING</div>
+    <div class="land-ticker-track">
+      <div class="land-ticker-inner" id="land-ticker"></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="land-about" id="land-about">
+    <div class="land-section-inner">
+      <div class="land-section-tag">Who We Are</div>
+      <h2 class="land-section-title">A Global Initiative Built<br/>to Back <em>You</em>.</h2>
+      <div class="land-about-grid">
+        <div class="land-about-text">
+          <p>The <strong>World Bank Youth Empowerment Funds (WBYEF)</strong> was founded in 2025 through a landmark joint partnership between the <strong>World Bank</strong> and the <strong>United Nations</strong>. Our mandate is simple but powerful: put money into the hands of young innovators, farmers, builders, and dreamers.</p>
+          <p>We operate in over 120 countries, with a special focus on emerging economies where youth unemployment is highest. If you are under 35 with a project that can uplift your community, you qualify.</p>
+          <div class="land-about-quote">
+            <span class="quote-mark">&ldquo;</span>
+            Youth are not the leaders of tomorrow &mdash; they are the change-makers of today.
+          </div>
+        </div>
+        <div class="land-about-cards">
+          <div class="land-acard"><div class="acard-icon">&#127974;</div><div><strong>World Bank</strong><br/><small>Global Financial Partner</small></div></div>
+          <div class="land-acard"><div class="acard-icon">&#127760;</div><div><strong>United Nations</strong><br/><small>Global Policy Partner</small></div></div>
+          <div class="land-acard highlight"><div class="acard-icon">&#127472;&#127466;</div><div><strong>Kenya Programme</strong><br/><small>Active &amp; Accepting Applications</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="land-steps">
+    <div class="land-section-inner">
+      <div class="land-section-tag">How It Works</div>
+      <h2 class="land-section-title">From Application to<br/>Grant in 4 Simple Steps.</h2>
+      <div class="land-steps-grid">
+        <div class="land-step"><div class="step-icon">&#128221;</div><div class="step-num">01</div><h3>Register &amp; Apply</h3><p>Create a free account and fill in your details. Takes less than 10 minutes.</p></div>
+        <div class="land-step-arrow">&rarr;</div>
+        <div class="land-step"><div class="step-icon">&#128269;</div><div class="step-num">02</div><h3>Verification</h3><p>Our system verifies your application instantly. No paperwork. No queues.</p></div>
+        <div class="land-step-arrow">&rarr;</div>
+        <div class="land-step"><div class="step-icon">&#127942;</div><div class="step-num">03</div><h3>Select Your Grant</h3><p>Choose the funding amount &mdash; from KSH 15,000 up to KSH 55,000.</p></div>
+        <div class="land-step-arrow">&rarr;</div>
+        <div class="land-step"><div class="step-icon">&#128184;</div><div class="step-num">04</div><h3>Receive Funds</h3><p>Funds disbursed directly to your account within 24&ndash;48 hours.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUND CATEGORIES -->
+  <section class="land-fund-cats">
+    <div class="land-section-inner">
+      <div class="land-section-tag">What We Fund</div>
+      <h2 class="land-section-title">Whatever Your Passion,<br/>We Have a Grant for It.</h2>
+      <div class="land-cats-grid">
+        <div class="land-cat-card">&#127806;<span>Agriculture &amp; Farming</span></div>
+        <div class="land-cat-card">&#128187;<span>Technology &amp; Innovation</span></div>
+        <div class="land-cat-card">&#127959;<span>Community Development</span></div>
+        <div class="land-cat-card">&#128200;<span>Business &amp; Entrepreneurship</span></div>
+        <div class="land-cat-card">&#127891;<span>Education &amp; Skills</span></div>
+        <div class="land-cat-card">&#127807;<span>Environmental Projects</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS PREVIEW -->
+  <section class="land-plans">
+    <div class="land-section-inner">
+      <div class="land-section-tag">Grant Amounts</div>
+      <h2 class="land-section-title">Choose the Grant That<br/>Fits Your Vision.</h2>
+      <div class="land-plans-row">
+        <div class="land-plan-card"><div class="lp-amount">KSH 15,000</div><div class="lp-fee">Fee: KSH 499</div></div>
+        <div class="land-plan-card"><div class="lp-amount">KSH 25,000</div><div class="lp-fee">Fee: KSH 599</div></div>
+        <div class="land-plan-card featured"><div class="lp-badge">Most Popular</div><div class="lp-amount">KSH 30,000</div><div class="lp-fee">Fee: KSH 699</div></div>
+        <div class="land-plan-card"><div class="lp-amount">KSH 45,000</div><div class="lp-fee">Fee: KSH 799</div></div>
+        <div class="land-plan-card"><div class="lp-amount">KSH 55,000</div><div class="lp-fee">Fee: KSH 899</div></div>
+      </div>
+      <p class="land-plans-note">Processing fees are remitted to the official government account. All grants disbursed after admin approval.</p>
+      <button class="land-btn-hero" onclick="showPage('page-register')">Apply for Your Grant &rarr;</button>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="land-testimonials">
+    <div class="land-section-inner">
+      <div class="land-section-tag">Success Stories</div>
+      <h2 class="land-section-title">Real Youth. Real Funding.<br/>Real Impact.</h2>
+      <div class="land-testi-grid">
+        <div class="land-testi">
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>&ldquo;I applied for the KSH 30,000 grant to expand my poultry farm. Within 48 hours of approval, the money was in my account. This program changed my life.&rdquo;</p>
+          <div class="testi-author"><strong>Amina W.</strong><small>Nairobi, Kenya &middot; Agriculture</small></div>
+        </div>
+        <div class="land-testi featured-testi">
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>&ldquo;I was skeptical at first, but after completing my application and paying the processing fee, I received KSH 45,000 to launch my tech startup. Unbelievable.&rdquo;</p>
+          <div class="testi-author"><strong>Brian O.</strong><small>Kisumu, Kenya &middot; Technology</small></div>
+        </div>
+        <div class="land-testi">
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>&ldquo;WBYEF funded my community project. The process was smooth, transparent and professional. I highly recommend every young person to apply.&rdquo;</p>
+          <div class="testi-author"><strong>Grace N.</strong><small>Mombasa, Kenya &middot; Community</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="land-final-cta">
+    <div class="land-cta-bg">
+      <div class="cta-orb cta-orb1"></div>
+      <div class="cta-orb cta-orb2"></div>
+    </div>
+    <div class="land-section-inner land-cta-content">
+      <h2>Your Grant Is Waiting.<br/>Apply Today &mdash; It's Free.</h2>
+      <p>Join over 50,000 young people who have transformed their futures through WBYEF. Limited slots available &mdash; apply now.</p>
+      <div class="land-cta-btns">
+        <button class="land-btn-hero" onclick="showPage('page-register')">&#128640; Create Free Account</button>
+        <button class="land-btn-outline-light" onclick="showPage('page-login')">Already registered? Sign In</button>
+      </div>
+      <div class="land-cta-contact">
+        <a href="tel:+18032104704">&#128222; +1 (803) 210-4704</a>
+        <span>&middot;</span>
+        <a href="https://wa.me/18032104704" target="_blank">&#128172; WhatsApp</a>
+        <span>&middot;</span>
+        <a href="mailto:tfwholebankempoerment@gmail.com">&#9993;&#65039; tfwholebankempoerment@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="land-footer">
+    <div class="land-footer-inner">
+      <div class="land-logo">
+        <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="32" fill="#C8A951"/>
+          <path d="M16 44 L32 14 L48 44" stroke="#1a3a2a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M22 34 L42 34" stroke="#1a3a2a" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="32" cy="14" r="4" fill="#1a3a2a"/>
+        </svg>
+        <div>
+          <div class="land-logo-name" style="font-size:1rem">WBYEF</div>
+          <div class="land-logo-sub">&copy; 2025 World Bank Youth Empowerment Funds. UN &amp; World Bank Joint Initiative.</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
 <!-- ========== LOGIN PAGE ========== -->
-<div id="page-login" class="page active">
+<div id="page-login" class="page">
   <div class="auth-split">
     <div class="auth-brand">
       <div class="logo-wrap">
@@ -404,7 +630,10 @@
       <div class="status-badge pending">🔄 Status: Pending Approval</div>
       <p class="waiting-note">You will be notified once your payment has been approved. Please check back regularly or wait on this page.</p>
       <div class="waiting-spinner"></div>
-      <button class="btn-secondary" onclick="checkApprovalStatus()">🔄 Check Status</button>
+      <div class="waiting-btns">
+        <button class="btn-secondary" onclick="checkApprovalStatus()">🔄 Check Status</button>
+        <button class="btn-home" onclick="handleLogout()">🏠 Return to Home</button>
+      </div>
     </div>
   </div>
 </div>
